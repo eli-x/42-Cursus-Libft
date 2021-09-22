@@ -1,5 +1,3 @@
-// memory function in <string.h>
-// #include <stdio.h>
 #include "libft.h"
 
 void	*ft_memset(void *str, int val, size_t len)
