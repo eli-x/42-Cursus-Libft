@@ -1,27 +1,26 @@
 #include "libft.h"
 
-//#include <stdio.h>
 int	ft_atoi(const char *str)
 {
-	int				odd_even;
-	unsigned int	res;
+	int		sign;
+	int		val;
 
-	odd_even = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
+	sign = 1;
+	val = 0;
+	while (*str == ' ' || (*str >= 8 && *str <= 13))
 		str++;
-	while (*str == 43 || *str == 45)
+	if (*str == '-' || *str == '+')
 	{
-		if (*str == 45)
-			odd_even *= -1;
+		if (*str == '-')
+			sign *= -1;
 		str++;
 	}
-	res = 0;
-	while (*str >= 48 && *str <= 57)
+	while (*str >= '0' && *str <= '9')
 	{
-		res = res * 10 + (*str - 48);
+		val = val * 10 + (*str - '0');
 		str++;
 	}
-	return (res * odd_even);
+	return (val * sign);
 }
 /*
 int main()
