@@ -2,26 +2,6 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		start;
-	int		end;
-	size_t	len;
-
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	end = 0;
-	len = ft_strlen(s1);
-	while (ft_strchr(set, (int)*(s1 + start)) && *(s1 + start))
-		start++;
-	if (!*(s1 + start))
-		return (NULL);
-	while (ft_strchr(set, (int)*(s1 + (len - 1 - end))) && *(s1 + (len - 1 - end)))
-		end++;
-	return (ft_substr(s1, start, len - start - end));
-}
-/*
-char	*ft_strtrim(char const *s1, char const *set)
-{
 	size_t	begin;
 	size_t	end;
 	char	*str;
@@ -41,5 +21,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 		ft_strlcpy(str, &s1[begin], end - begin + 1);
 		return (str);
 	}
+	return (0);
 }
-*/
