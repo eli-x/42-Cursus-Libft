@@ -18,6 +18,11 @@ void	*ft_memmove(void *dst, const void *src, size_t count)
 	return (dst);
 }
 /*
+copies count bytes from src to dst, 
+resemble to memcpy.
+2 strs may overlap
+*/
+/*
 {
 	if (src >= dst)
 	{
