@@ -1,6 +1,23 @@
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t count)
+
+{
+	char	*tmp;
+	char	*dest;
+
+	tmp = (char *)src;
+	dest = (char *)dst;
+	if (tmp < dest)
+	{
+		while (count--)
+			dest[count] = tmp[count];
+	}
+	else
+		ft_memcpy(dest, tmp, count);
+	return (dst);
+}
+/*
 {
 	if (src >= dst)
 	{
@@ -24,6 +41,7 @@ void	*ft_memmove(void *dst, const void *src, size_t count)
 	}
 	return (dst);
 }
+*/
 /*
 int	main()
 {
