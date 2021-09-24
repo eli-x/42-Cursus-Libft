@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eli-x <yxiong@student.42adel.org.au>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 23:58:01 by eli-x             #+#    #+#             */
+/*   Updated: 2021/09/24 23:58:02 by eli-x            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t count)
-
 {
 	char	*tmp;
 	char	*dest;
@@ -10,13 +21,14 @@ void	*ft_memmove(void *dst, const void *src, size_t count)
 	dest = (char *)dst;
 	if (tmp < dest)
 	{
-		while (count--)
+		while (count-- > 0)
 			dest[count] = tmp[count];
 	}
 	else
 		ft_memcpy(dest, tmp, count);
 	return (dst);
 }
+
 /*
 copies count bytes from src to dst, 
 resemble to memcpy.

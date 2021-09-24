@@ -1,82 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eli-x <yxiong@student.42adel.org.au>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 23:58:50 by eli-x             #+#    #+#             */
+/*   Updated: 2021/09/24 23:58:51 by eli-x            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int	splits_count(char const *s, char c)
+static size_t	splitslen(char const *s, char c)
 {
-	int	i;
-	int	cnt;
+	size_t	i;
 
 	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static size_t	cntsplits(char const *s, char c)
+{
+	size_t	cnt;
+
 	cnt = 0;
-	while (s[i])
+	while (*s)
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c && s[i] != '\0')
-			cnt++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
+		while (*s == c)
+			s++;
+		if (!*s)
+			break ;
+		s += splitslen(s, c);
+		cnt++;
 	}
 	return (cnt);
 }
 
-static void	free_str(char **str, int i)
+static char	**frees(char **splts, int i)
 {
-	while (str[i] && i >= 0)
+	while (i--)
 	{
-		free(str[i]);
-		str[i] = NULL;
-		i--;
+		free(*splts);
+		splts++;
 	}
-	free(str);
-	str = NULL;
+	free(splts);
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**new;
-	char	*start;
-	int		j;
+	int			i;
+	char		**res;
+	size_t		splitcnt;
+	size_t		lenofsub;
 
-	j = 0;
-	new = (char **)malloc(sizeof(char *) * (splits_count(s, c) + 1));
-	if (!s || !new)
+	splitcnt = cntsplits(s, c);
+	res = (char **)malloc(sizeof(char *) * (splitcnt + 1));
+	if (!s || !res)
 		return (NULL);
-	while (*s)
+	i = 0;
+	while (splitcnt--)
 	{
-		if (*s != c)
-		{
-			start = (char *)s;
-			while (*s && *s != c)
-				s++;
-			new[j++] = ft_substr(start, 0, (s - start));
-			if (!new[j])
-				free_str(new, j);
-		}
-		else
+		while (*s == c)
 			s++;
+		lenofsub = splitslen(s, c);
+		res[i] = malloc(lenofsub + 1);
+		if (!res[i])
+			return (frees(res, i));
+		ft_strlcpy(res[i++], s, lenofsub + 1);
+		s += lenofsub;
 	}
-	new[j] = 0;
-	return (new);
+	res[i] = 0;
+	return (res);
 }
-/*
- * need more working 
- * a.out(88054,0x116c5bdc0) malloc: *** error for object 0x7fb6d1405800: pointer being freed was not allocated
- * a.out(88054,0x116c5bdc0) malloc: *** set a breakpoint in malloc_error_break to debug
-#include <stdio.h>
-int	main()
-{
-	char s[100] = "this is a test string to check if the function works well; if not, then I might  have 2 do this again";
-	char c = ' ';
-	unsigned int	cnt = splits_count(s, c);
-	char	**new = ft_split(s, c);
-	unsigned int	i = 0;
-	
-	while (*new[i])
-	{
-		printf("%d ", i);
-		printf("%s\n", new[i]);
-		i++;
-	}
-	return (0);
-}
-*/

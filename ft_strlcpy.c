@@ -1,4 +1,16 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eli-x <yxiong@student.42adel.org.au>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/25 00:01:40 by eli-x             #+#    #+#             */
+/*   Updated: 2021/09/25 00:01:41 by eli-x            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
 {
@@ -22,11 +34,10 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
 		i++;
 	return (i);
 }
-/*
-//in <string.h>
-//Returns the total length of the string they tried to create
-//copies up to [dstsize - 1] chars from src to dst, 
-//NUL-terminating the result if dstsize != 0.
+/*Returns the total length of the string they tried to create
+copies up to [dstsize - 1] chars from src to dst, 
+NUL-terminating the result if dstsize != 0.
+
 int main()
 {
 	char	str1[] = "ABC DEF ghi";
