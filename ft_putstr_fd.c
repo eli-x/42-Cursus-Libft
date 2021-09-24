@@ -6,7 +6,7 @@
 /*   By: eli-x <yxiong@student.42adel.org.au>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 23:54:17 by eli-x             #+#    #+#             */
-/*   Updated: 2021/09/24 23:54:18 by eli-x            ###   ########.fr       */
+/*   Updated: 2021/09/25 00:31:33 by eli-x            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (*s && s)
-		write (fd, s, ft_strlen(s));
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }
